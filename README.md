@@ -6,8 +6,10 @@ Julgador online para as linguagens de programação Racket e/ou Prolog, para aut
 
 ## Autores
 
-* **Antônio F. Dias** - [Github](https://github.com/antoniofdias)
-* **Eduardo R. Seifert** - [Github](https://github.com/EduardoRSeifert)
-* **Jéssica Machado** - [Github](https://github.com/jessica-machado)
-* **Lucas Natanael Prates** - [Github](https://github.com/)
-* **Pedro Pontes** - [Github](https://github.com/pedroccrp)
+* **Antônio F. Dias**
+* **Eduardo R. Seifert**
+* **Jéssica Machado**
+* **Lucas Natanael Prates**
+* **Pedro Pontes**
+
+Ver mais em [contribuidores](https://github.com/antoniofdias/sis_plp/contributors).
