@@ -1,0 +1,25 @@
+{
+  "name": "sis_plp",
+  "version": "1.0.0",
+  "description": "Online judge for prolog and racket language",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon app.js",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/antoniofdias/sis_plp.git"
+  },
+  "keywords": [
+    "prolog",
+    "racket",
+    "judge"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/antoniofdias/sis_plp/issues"
+  },
+  "homepage": "https://github.com/antoniofdias/sis_plp#readme"
+}
