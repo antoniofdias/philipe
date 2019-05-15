@@ -4,8 +4,8 @@
   "description": "Online judge for prolog and racket language",
   "main": "app.js",
   "scripts": {
-    "dev": "nodemon app.js",
-    "start": "node app.js"
+    "dev": "NODE_ENV='dev' nodemon app.js",
+    "rel": "NODE_ENV='rel' node app.js"
   },
   "repository": {
     "type": "git",
