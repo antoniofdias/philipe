@@ -55,6 +55,7 @@ app.use(require('./middlewares/session-credentials'));
 app.use(require('./controllers/home'));
 app.use(require('./controllers/login'));
 app.use(require('./controllers/register'));
+app.use(require('./controllers/logout'));
 
 // ---- Server Start ------------------------------
 
