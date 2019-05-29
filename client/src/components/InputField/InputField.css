@@ -1,0 +1,15 @@
+.input-field, input[type="submit"] {
+    width: 60%;
+    box-shadow: 0px 5px #00000048;
+    margin: 2%;
+    padding: 2% 5%;
+    border: 1px solid #00000000;
+    border-radius: 10px;
+}
+
+input[type="submit"] {
+    width: 30%;
+    margin: 5% 30% 5% 30%;
+    padding: 1% 5%;
+    background-color: #b7ecec;   
+}

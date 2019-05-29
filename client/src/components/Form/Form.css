@@ -1,0 +1,25 @@
+.form-container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-container form {
+    min-width: 300px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 15px;
+    background-color: #4e4e4eb6;
+    box-shadow: 0px 5px #00000048;
+    padding: 3% 0;
+    width: 50%;
+}
+
+
+.form-container form label {
+    font-size: 200%;
+    font-weight: bold;
+    color: white;
+}

@@ -1,0 +1,27 @@
+.c-alert {
+    display: flex;
+    justify-content: center;
+    margin: 3% 5% 2% 5%;
+    padding: 2%;
+    width: 50%;
+    border-radius: 15px;
+}
+
+.c-alert span {
+    color: white;
+    font-size: 120%;
+    font-weight: 500;
+    text-shadow: 1px 1px rgba(0, 0, 0, 0.6);
+}
+
+.c-alert-error {
+    background-color: rgba(250, 52, 52);
+}
+
+.c-alert-success {
+    background-color: rgba(141, 255, 112);
+}
+
+.c-alert-warning {
+    background-color: rgba(255, 252, 88);
+}
