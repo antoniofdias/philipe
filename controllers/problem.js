@@ -52,12 +52,12 @@ router.post("/api/problem", (req, res) => {
 
     const attributes = {
       title: title,
-      description: description ? description : "",
+      description: description ? description : "-",
       language: language
     };
 
     if (obj) {
-      Problem.update({ _id: obj._id }, attributes, (err, _) => {
+      Problem.updateOne({ _id: obj._id }, attributes, (err, _) => {
         if (err) {
           feedback.error = "database-error";
           feedback.message = err;

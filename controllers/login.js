@@ -33,6 +33,11 @@ router.post("/api/login", (req, res) => {
     if (obj && bcrypt.compareSync(password, obj.password)) {
       feedback.error = null;
       feedback.message = "Successfully logged in!";
+      feedback.user = {
+      	username: username,
+      	email: obj.email,
+      	type: obj.type
+      };
 
       return res.json(feedback);
     } else {
