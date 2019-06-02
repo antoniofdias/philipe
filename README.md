@@ -1,4 +1,4 @@
-# SIS_PLP
+# _philipe_
 
 Online judge for Prolog and Racket programming languages.
 
