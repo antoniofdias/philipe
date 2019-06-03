@@ -1,5 +1,5 @@
 {
-  "name": "sis_plp",
+  "name": "philipe",
   "version": "1.0.0",
   "description": "Online judge for prolog and racket language",
   "main": "app.js",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/antoniofdias/sis_plp.git"
+    "url": "git+https://github.com/antoniofdias/philipe.git"
   },
   "keywords": [
     "prolog",
@@ -19,7 +19,7 @@
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/antoniofdias/sis_plp/issues"
+    "url": "https://github.com/antoniofdias/philipe/issues"
   },
-  "homepage": "https://github.com/antoniofdias/sis_plp#readme"
+  "homepage": "https://github.com/antoniofdias/philipe#readme"
 }
