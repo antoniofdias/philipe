@@ -1,36 +1,37 @@
 {
-  "name": "philipe",
-  "version": "1.0.0",
-  "description": "Online judge for prolog and racket language",
-  "main": "app.js",
-  "scripts": {
-    "dev": "NODE_ENV='dev' nodemon app.js",
-    "rel": "NODE_ENV='rel' node app.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/antoniofdias/philipe.git"
-  },
-  "keywords": [
-    "prolog",
-    "racket",
-    "judge"
-  ],
-  "author": "",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/antoniofdias/philipe/issues"
-  },
-  "homepage": "https://github.com/antoniofdias/philipe#readme",
-  "dependencies": {
-    "bcrypt": "^3.0.6",
-    "dotenv": "^8.0.0",
-    "express": "^4.17.1",
-    "moment": "^2.24.0",
-    "mongoose": "^5.5.12",
-    "path": "^0.12.7"
-  },
-  "devDependencies": {
-    "nodemon": "^1.19.1"
-  }
+    "name": "philipe",
+    "version": "1.0.0",
+    "description": "Online judge for prolog and racket language",
+    "main": "app.js",
+    "scripts": {
+        "start": "node app.js",
+        "dev": "NODE_ENV='dev' nodemon app.js",
+        "rel": "NODE_ENV='rel' node app.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/antoniofdias/philipe.git"
+    },
+    "keywords": [
+        "prolog",
+        "racket",
+        "judge"
+    ],
+    "author": "",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/antoniofdias/philipe/issues"
+    },
+    "homepage": "https://github.com/antoniofdias/philipe#readme",
+    "dependencies": {
+        "bcrypt": "^3.0.6",
+        "dotenv": "^8.0.0",
+        "express": "^4.17.1",
+        "moment": "^2.24.0",
+        "mongoose": "^5.5.12",
+        "path": "^0.12.7"
+    },
+    "devDependencies": {
+        "nodemon": "^1.19.1"
+    }
 }
