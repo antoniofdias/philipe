@@ -5,17 +5,6 @@ const path = require("path");
 
 const app = express();
 
-// ---- Handlebars --------------------------------
-
-const exphbs = require("express-handlebars");
-
-const hbs = exphbs.create({ defaultLayout: "main" });
-
-app.engine("handlebars", hbs.engine);
-
-app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "handlebars");
-
 // ---- Database Conection (Mongoose) -------------
 
 const mongoose = require("mongoose");
