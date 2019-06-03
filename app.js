@@ -17,18 +17,6 @@ mongoose.connect(config.db.uri, { useNewUrlParser: true }, (err, db) => {
   }
 });
 
-// ---- Session -----------------------------------
-
-const session = require("express-session");
-
-app.use(
-  session({
-    secret: config.session.secret,
-    resave: true,
-    saveUninitialized: true
-  })
-);
-
 // ---- Middlewares -------------------------------
 
 app.use(express.json());
@@ -41,7 +29,6 @@ app.use(require("./middlewares/session-credentials"));
 
 app.use(require("./controllers/login"));
 app.use(require("./controllers/register"));
-app.use(require("./controllers/logout"));
 app.use(require("./controllers/problem"));
 app.use(require("./controllers/problemlist"));
 
