@@ -21,5 +21,12 @@
   "bugs": {
     "url": "https://github.com/antoniofdias/philipe/issues"
   },
-  "homepage": "https://github.com/antoniofdias/philipe#readme"
+  "homepage": "https://github.com/antoniofdias/philipe#readme",
+  "dependencies": {
+    "bcrypt": "^3.0.6",
+    "express": "^4.17.1",
+    "moment": "^2.24.0",
+    "mongoose": "^5.5.12",
+    "path": "^0.12.7"
+  }
 }
