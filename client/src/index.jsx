@@ -3,6 +3,8 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-require("dotenv").config();
+import dotenv from "dotenv";
+
+dotenv.config("../.env");
 
 ReactDOM.render(<App />, document.getElementById("root"));
