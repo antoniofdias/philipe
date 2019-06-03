@@ -31,6 +31,11 @@ class Problem extends Component {
                     }
                 });
                 return false;
+            default:
+                this.setState({
+                    alert: {}
+                });
+                break;
         }
     };
 

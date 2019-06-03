@@ -10,47 +10,30 @@ class Register extends Component {
         alert: {}
     };
 
-    handleResponse = data => {
-        switch (data.error) {
-            case "blank":
-                this.setState({
-                    alert: {
-                        type: "error",
-                        value: data.message
-                    }
-                });
-                return false;
-
-            case "already-exists":
-                this.setState({
-                    alert: {
-                        type: "error",
-                        value: data.message
-                    }
-                });
-                return false;
-
-            case null:
-                this.setState({
-                    alert: {
-                        type: "success",
-                        value: data.message
-                    }
-                });
-                return true;
-
-            default:
-                this.setState({
-                    alert: {}
-                });
-                break;
+    handleResponse = ({ error, message }) => {
+        if (error) {
+            this.setState({
+                alert: {
+                    type: "error",
+                    value: message
+                }
+            });
+            return false;
+        } else {
+            this.setState({
+                alert: {
+                    type: "success",
+                    value: message
+                }
+            });
+            return true;
         }
     };
 
     handleSubmit = event => {
         event.preventDefault();
 
-        const { username, password, passwordConfirmation, email } = this.state;
+        const { username, password, email } = this.state;
 
         fetch("/api/register", {
             method: "post",
@@ -62,7 +45,6 @@ class Register extends Component {
             .then(response => response.json())
             .then(data => {
                 this.handleResponse(data);
-                console.log(data);
             })
             .catch(err => console.log(err));
     };
@@ -98,12 +80,6 @@ class Register extends Component {
                     name="password"
                     type="password"
                     placeholder="Password"
-                />
-                <InputField
-                    onChange={this.handleChange}
-                    name="passwordConfirmation"
-                    type="password"
-                    placeholder="Password Conformation"
                 />
                 <SelectField
                     options={["STUDENT", "MONITOR", "PROFESSOR", "ADMIN"]}

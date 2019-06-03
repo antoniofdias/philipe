@@ -17,40 +17,23 @@ class Login extends Component {
         alert: {}
     };
 
-    handleResponse = data => {
-        switch (data.error) {
-            case "blank":
-                this.setState({
-                    alert: {
-                        type: "error",
-                        value: data.message
-                    }
-                });
-                return false;
-
-            case "wrong-credentials":
-                this.setState({
-                    alert: {
-                        type: "error",
-                        value: data.message
-                    }
-                });
-                return false;
-
-            case null:
-                this.setState({
-                    alert: {
-                        type: "success",
-                        value: data.message
-                    }
-                });
-                return true;
-
-            default:
-                this.setState({
-                    alert: {}
-                });
-                break;
+    handleResponse = ({ error, message }) => {
+        if (error) {
+            this.setState({
+                alert: {
+                    type: "error",
+                    value: message
+                }
+            });
+            return false;
+        } else {
+            this.setState({
+                alert: {
+                    type: "success",
+                    value: message
+                }
+            });
+            return true;
         }
     };
 
