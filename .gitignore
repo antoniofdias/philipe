@@ -10,3 +10,6 @@ config
 # All test files
 */test
 */tests
+
+# Dotenv
+.env
