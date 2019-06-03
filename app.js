@@ -5,11 +5,15 @@ const path = require("path");
 
 const app = express();
 
+// ---- Dotenv ------------------------------------
+
+require("dotenv").config();
+
 // ---- Database Conection (Mongoose) -------------
 
 const mongoose = require("mongoose");
 
-mongoose.connect(config.db.uri, { useNewUrlParser: true }, (err, db) => {
+mongoose.connect(config.database.uri, { useNewUrlParser: true }, (err, db) => {
   if (err) {
     console.log(`**** Server: Couldn't connect to database. Err: `, err);
   } else {
