@@ -13,7 +13,6 @@ Follow these instructions in order to host program locally.
 * [Mongodb](https://www.mongodb.com/)
 * [Node.js](https://nodejs.org/en/)
 * [npm](https://www.npmjs.com/)
-* [nodemon](https://nodemon.io/)
 
 ### Installing (Linux x64)
 
@@ -25,15 +24,13 @@ sudo add-apt-repository ppa:plt/racket
 
 sudo apt-get update
 
-sudo apt-get install swi-prolog
-sudo apt-get install racket
+sudo apt-get install -y swi-prolog
+sudo apt-get install -y racket
 
-sudo apt-get install mongodb
+sudo apt-get install -y mongodb
 
-sudo apt-get install nodejs
-sudo apt-get install npm
-
-sudo npm install nodemon -g
+sudo apt-get install -y nodejs
+sudo apt-get install -y npm
 ```
 
 * Npm Modules
@@ -63,60 +60,25 @@ npm install
   ```
 
 
-* Configuration files
+* Dotenv
   
-  * Create folder and files
+  * Edit .env.example
+  * Rename to .env
 
   ```
-  mkdir config
-
-  cd config
-
-  touch config.js
-  ```
-
-  * Configure config.js
-  
-    * Generate new secret
-
-    * Add developing (dev) database URI
-
-  ```
-  // config.js
-
-  const env = process.env.NODE_ENV;
-
-  const config = {};
-
-  config.common = {
-      session: {
-          secret: 'secret'
-      }
-  };
-
-  config.dev = {
-      db: {
-          uri: 'mongodb://username:password@localhost:27017/db_name'
-      }
-  };
-
-  config.rel = {
-      db: {
-          uri: ''
-      }
-  };
-
-  module.exports = {...config.common, ...config[env]};
+  mv .env.example .env
   ```
 
 ### Running
 
 ```
-npm run dev
+# Developing
+npm run dev 
 
-or
+# Or
 
-PORT=3000 node app.js
+# Release
+npm run rel 
 ```
 
 ## Built with
