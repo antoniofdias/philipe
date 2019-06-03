@@ -4,9 +4,6 @@ node_modules
 # Log
 *.log
 
-# Config
-config
-
 # All test files
 */test
 */tests
