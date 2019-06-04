@@ -13,6 +13,27 @@ class Problem extends Component {
         language: "PROLOG"
     };
 
+    componentDidMount() {
+        const id = this.props.match.params.id;
+
+        fetch(`/api/problem/find/${id}`, {
+            method: "get",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+            .then(response => response.json())
+            .then(data => {
+                const { title, description, language } = data.problem;
+
+                this.setState({
+                    title: title,
+                    description: description,
+                    language: language
+                });
+            });
+    }
+
     handleResponse = data => {
         switch (data.error) {
             case null:
@@ -82,6 +103,7 @@ class Problem extends Component {
                     type="textarea"
                     name="title"
                     placeholder="Title"
+                    value={this.state.title}
                     autoFocus={true}
                     onChange={this.handleAttributesChange}
                 />
@@ -89,10 +111,12 @@ class Problem extends Component {
                     type="textarea"
                     name="description"
                     placeholder="Description"
+                    value={this.state.description}
                     onChange={this.handleAttributesChange}
                 />
                 <SelectField
                     options={["PROLOG", "RACKET"]}
+                    value={this.state.language}
                     name="language"
                     onChange={this.handleAttributesChange}
                 />

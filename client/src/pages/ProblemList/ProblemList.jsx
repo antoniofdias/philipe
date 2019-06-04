@@ -20,8 +20,9 @@ class ProblemList extends Component {
         };
     }
 
-    componentWillMount() {
-        fetch(`/api/problem/${this.state.language}`, {
+    componentDidMount() {
+        const id = this.props.match.params.id;
+        fetch(`/api/problemlist/find/${id}`, {
             method: "get",
             headers: {
                 "Content-Type": "application/json"
@@ -29,13 +30,39 @@ class ProblemList extends Component {
         })
             .then(response => response.json())
             .then(data => {
-                if (data) {
-                    this.setState({
-                        problems: data.problems
-                    });
-                }
-            })
-            .catch(err => console.log(err));
+                const {
+                    title,
+                    description,
+                    problems,
+                    language
+                } = data.problemlist;
+
+                this.setState(
+                    {
+                        title: title,
+                        description: description,
+                        selectedProblems: [...problems],
+                        language: language
+                    },
+                    () => {
+                        fetch(`/api/problem/${this.state.language}`, {
+                            method: "get",
+                            headers: {
+                                "Content-Type": "application/json"
+                            }
+                        })
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data) {
+                                    this.setState({
+                                        problems: data.problems
+                                    });
+                                }
+                            })
+                            .catch(err => console.log(err));
+                    }
+                );
+            });
     }
 
     handleResponse = data => {
@@ -147,6 +174,7 @@ class ProblemList extends Component {
                     type="textarea"
                     name="title"
                     placeholder="Title"
+                    value={this.state.title}
                     autoFocus={true}
                     onChange={this.handleAttributesChange}
                 />
@@ -154,11 +182,13 @@ class ProblemList extends Component {
                     type="textarea"
                     name="description"
                     placeholder="Description"
+                    value={this.state.description}
                     onChange={this.handleAttributesChange}
                 />
 
                 <SelectField
                     options={["PROLOG", "RACKET"]}
+                    value={this.state.language}
                     onChange={this.handleSelectChange}
                 />
 
