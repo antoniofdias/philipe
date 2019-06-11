@@ -9,17 +9,21 @@ router.get("/api/problem/find/:id", (req, res) => {
     };
 
     const id = req.params.id;
+    
+    if (id) {
+        Problem.findById(id, (err, obj) => {
+            if (err) {
+                feedback.error = err;
+                console.log("Error while searching on database:", err);
+            } else {
+                feedback.problem = obj;
+            }
 
-    Problem.findById(id, (err, obj) => {
-        if (err) {
-            feedback.error = err;
-            console.log("Error while searching on database:", err);
-        } else {
-            feedback.problem = obj;
-        }
-
+            return res.json(feedback);
+        });
+    } else {
         return res.json(feedback);
-    });
+    }
 });
 
 router.get("/api/problem/:language?", (req, res) => {

@@ -34,6 +34,7 @@ app.use(require("./controllers/login"));
 app.use(require("./controllers/register"));
 app.use(require("./controllers/problem"));
 app.use(require("./controllers/problemlist"));
+app.use(require("./controllers/submission"));
 
 // ---- Server Start ------------------------------
 

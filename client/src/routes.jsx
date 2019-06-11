@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
+import List from "./pages/List/List";
 import ProblemList from "./pages/ProblemList/ProblemList";
 import ProblemLists from "./pages/ProblemLists/ProblemLists";
 import Problem from "./pages/Problem/Problem";
@@ -18,17 +19,41 @@ class Routes extends Component {
                     <Switch>
                         <Route path="/login" component={Login} />
                         <Route
-                            //userTypes={["ADMIN"]}
+                            userTypes={["ADMIN"]}
                             path="/register"
                             component={Register}
+                            redirect="/login"
                         />
-                        <Route
+
+                        <PrivateRoute
+                            path="/list/:id?"
+                            component={List}
+                            redirect="/login"
+                        />
+                        <PrivateRoute
+                            userTypes={["ADMIN", "PROFESSOR"]}
                             path="/problemlist/:id?"
                             component={ProblemList}
+                            redirect="/login"
                         />
-                        <Route path="/problemlists" component={ProblemLists} />
-                        <Route path="/problem/:id?" component={Problem} />
-                        <Route path="/problems" component={Problems} />
+                        <PrivateRoute
+                            userTypes={["ADMIN", "PROFESSOR"]}
+                            path="/problemlists"
+                            component={ProblemLists}
+                            redirect="/login"
+                        />
+                        <PrivateRoute
+                            userTypes={["ADMIN", "PROFESSOR"]}
+                            path="/problem/:id?"
+                            component={Problem}
+                            redirect="/login"
+                        />
+                        <PrivateRoute
+                            userTypes={["ADMIN", "PROFESSOR"]}
+                            path="/problems"
+                            component={Problems}
+                            redirect="/login"
+                        />
                         <PrivateRoute
                             path="/account"
                             component={Header}

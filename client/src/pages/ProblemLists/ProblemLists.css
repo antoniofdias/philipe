@@ -21,6 +21,11 @@
     background-color:#f1bb4e
 }
 
+.sidebutton-submit {
+    background-color:#b8f14e;
+    color: #949494;
+}
+
 .sidebutton:hover{
     border-color: rgba(255,255,255,1);
 }

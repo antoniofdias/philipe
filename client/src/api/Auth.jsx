@@ -9,17 +9,45 @@ export const isAuthenticated = () => {
     return token !== null;
 };
 
-export const getToken = () => {
-    const hash = sessionStorage.getItem(TOKEN_KEY);
-    const stringify = cryptojs.AES.decrypt(hash, SECRET);
-    return JSON.parse(stringify);
+export const isAuthenticatedAs = userTypes => {
+    let auth = false;
+
+    const token = getToken();
+
+    if (token) {
+        if (userTypes) {
+            for (let i = 0; i < userTypes.length; i++) {
+                const t = userTypes[i];
+
+                if (t === token.type) {
+                    auth = true;
+                    break;
+                }
+            }
+        } else {
+            auth = true;
+        }
+    }
+
+    return auth;
 };
 
-export const login = (token, callback) => {
+export const getToken = () => {
+    const hash = sessionStorage.getItem(TOKEN_KEY);
+    // const stringify = cryptojs.AES.decrypt(hash, SECRET);
+    return JSON.parse(hash);
+};
+
+export const getUsername = () => {
+    const item = sessionStorage.getItem(TOKEN_KEY);
+
+    return JSON.parse(item).username;
+};
+
+export const login = token => {
     const stringify = JSON.stringify(token);
-    const hash = cryptojs.AES.encrypt(stringify, SECRET);
-    sessionStorage.setItem(TOKEN_KEY, hash);
-    callback();
+    // const hash = cryptojs.AES.encrypt(stringify, SECRET);
+    sessionStorage.setItem(TOKEN_KEY, stringify);
 };
 
 export const logout = () => {

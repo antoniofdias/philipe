@@ -37,7 +37,7 @@ class Login extends Component {
         }
     };
 
-    handleSubmit = event => {
+    handleSubmit = async event => {
         event.preventDefault();
 
         const { username, password } = this.state;
@@ -52,12 +52,14 @@ class Login extends Component {
             .then(response => response.json())
             .then(data => {
                 if (this.handleResponse(data)) {
-                    console.log(data.email);
+                    console.log(data);
                     loginLocalStorage({
                         username,
                         email: data.user.email,
                         type: data.user.type
                     });
+
+                    this.props.history.push("/");
                 }
             })
             .catch(err => console.log(err));
@@ -71,7 +73,7 @@ class Login extends Component {
 
     render() {
         if (isAuthenticated()) {
-            return <Redirect to="/account" />;
+            return <Redirect to="/" />;
         }
 
         return (

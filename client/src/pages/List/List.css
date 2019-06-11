@@ -1,22 +1,16 @@
-.problems-container {
+.problemsBox {
     border-radius: 15px;
     display: flex;
-    margin-top: 5%;
+    margin-top: 2%;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 80%;
-    padding: 5%;
-    background-color: #0000007c; 
+    padding: 2%;
+    background-color: rgba(0, 0, 0, 0.287);
 }
 
-.problems-container label {
-    color: #e2e2e2;
-    font-size: 120%;
-    font-weight: bold;
-}   
-
-.problem-item {
+.problem {
     border-radius: 10px;
     background-color: #0000007c; 
     margin: 1% 0%;
@@ -29,6 +23,10 @@
     color: white;
 }
 
-.problem-item * {
+.problem * {
     flex: 1 1 0;
+}
+
+.queue {
+    color: yellow;
 }

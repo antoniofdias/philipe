@@ -33,11 +33,11 @@ class Register extends Component {
     handleSubmit = event => {
         event.preventDefault();
 
-        const { username, password, email } = this.state;
+        const { username, password, email, type } = this.state;
 
         fetch("/api/register", {
             method: "post",
-            body: JSON.stringify({ username, password, email }),
+            body: JSON.stringify({ username, password, email, type }),
             headers: {
                 "Content-Type": "application/json"
             }
@@ -82,7 +82,9 @@ class Register extends Component {
                     placeholder="Password"
                 />
                 <SelectField
+                    name="type"
                     options={["STUDENT", "MONITOR", "PROFESSOR", "ADMIN"]}
+                    onChange={this.handleChange}
                 />
                 <InputField type="submit" value="Register" />
             </Form>

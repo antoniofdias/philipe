@@ -41,6 +41,7 @@ router.post("/api/register", (req, res) => {
         newUser.email = email;
         newUser.type = type;
 
+        console.log(newUser);
         newUser.save((err, savedUser) => {
           if (err) {
             feedback.error = "database-error";

@@ -15,8 +15,7 @@ const userSchema = mongoose.Schema({
     },
     type: {
         type: String,
-        enum: ['STUDENT', 'MONITOR', 'PROFESSOR', 'ADMIN'],
-        default: 'STUDENT'
+        required: true
     }
 })
 
