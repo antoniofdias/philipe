@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import Form from "components/Form/Form";
+import { isAuthenticatedAs, login as loginLocalStorage } from "api/Auth";
+
 import "./ProblemLists.css";
 
 class ProblemLists extends Component {
@@ -35,6 +37,24 @@ class ProblemLists extends Component {
         this.props.history.push(`problemlist/${id}`);
     };
 
+    handleRemove = (event, id) => {
+        event.preventDefault();
+
+        fetch(`/api/problemlist`, {
+            method: "delete",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                _id: id
+            })
+        })
+            .then(response => {
+                this.requestProblemLists();
+            })
+            .catch(err => console.log(err));
+    };
+
     render() {
         let key = 1;
 
@@ -67,15 +87,43 @@ class ProblemLists extends Component {
                             language
                         } = problemlist;
 
+                        const options = [];
+
+                        if (isAuthenticatedAs(["ADMIN", "PROFESSOR"])) {
+                            options.push(
+                                <button
+                                    className="sidebutton sidebutton-edit"
+                                    onClick={e => this.handleEdit(e, _id)}
+                                >
+                                    E
+                                </button>
+                            );
+
+                            options.push(
+                                <button
+                                    className="sidebutton sidebutton-remove"
+                                    onClick={e => this.handleRemove(e, _id)}
+                                >
+                                    R
+                                </button>
+                            );
+                        }
+
+                        options.push(
+                            <button
+                                className="sidebutton sidebutton-submit"
+                                onClick={() =>
+                                    this.props.history.push(`/list/${_id}`)
+                                }
+                            >
+                                S
+                            </button>
+                        );
+
                         return (
                             <div key={_id} className="problem-item">
                                 <div>
-                                    <button
-                                        className="sidebutton sidebutton-edit"
-                                        onClick={e => this.handleEdit(e, _id)}
-                                    >
-                                        E
-                                    </button>
+                                    {options}
                                     {/* <button className="sidebutton sidebutton-remove">
                                         X
                                     </button> */}

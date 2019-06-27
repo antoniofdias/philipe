@@ -16,22 +16,25 @@ class Problem extends Component {
     componentDidMount() {
         const id = this.props.match.params.id;
 
-        fetch(`/api/problem/find/${id}`, {
-            method: "get",
-            headers: {
-                "Content-Type": "application/json"
-            }
-        })
-            .then(response => response.json())
-            .then(data => {
-                const { title, description, language } = data.problem;
+        if (id) {
+            fetch(`/api/problem/find/${id}`, {
+                method: "get",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    const { title, description, language } = data.problem;
 
-                this.setState({
-                    title: title,
-                    description: description,
-                    language: language
+                    this.setState({
+                        _id: id,
+                        title: title,
+                        description: description,
+                        language: language
+                    });
                 });
-            });
+        }
     }
 
     handleResponse = data => {
@@ -63,11 +66,12 @@ class Problem extends Component {
     handleSubmit = event => {
         event.preventDefault();
 
-        const { title, description, language } = this.state;
+        const { _id, title, description, language } = this.state;
 
         fetch(`/api/problem`, {
             method: "post",
             body: JSON.stringify({
+                _id,
                 title,
                 description,
                 language
@@ -89,6 +93,10 @@ class Problem extends Component {
     handleAttributesChange = event => {
         const { name, value } = event.target;
 
+        const reader = new FileReader();
+        reader.readAsText(event.target.files[0]);
+        console.log(reader);
+
         this.setState({ [name]: value });
     };
 
@@ -107,8 +115,8 @@ class Problem extends Component {
                     autoFocus={true}
                     onChange={this.handleAttributesChange}
                 />
-                <InputField
-                    type="textarea"
+                <textarea
+                    id="description"
                     name="description"
                     placeholder="Description"
                     value={this.state.description}
@@ -120,6 +128,13 @@ class Problem extends Component {
                     name="language"
                     onChange={this.handleAttributesChange}
                 />
+                {/* <input
+                    id="test_cases"
+                    type="file"
+                    name="test_cases"
+                    value={this.state.title}
+                    onChange={this.handleAttributesChange}
+                /> */}
                 <InputField type="submit" value="Finish" />
             </Form>
         );

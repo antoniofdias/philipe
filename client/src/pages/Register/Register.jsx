@@ -7,10 +7,13 @@ import "./Register.css";
 
 class Register extends Component {
     state = {
+        type: "STUDENT",
         alert: {}
     };
 
     handleResponse = ({ error, message }) => {
+        console.log(message);
+
         if (error) {
             this.setState({
                 alert: {

@@ -28,9 +28,9 @@ class Submission extends Component {
             >
                 <div className="problemsBox">
                     <label>{title}</label>
-                    <InputField
+                    <textarea
+                        id="code"
                         name="code"
-                        type="textarea"
                         onChange={this.handleChange}
                         placeholder="Code"
                         autoFocus={true}

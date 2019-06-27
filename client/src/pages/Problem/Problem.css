@@ -1,0 +1,17 @@
+#description {
+    overflow-y: scroll;
+    margin: 1% 0%;
+    padding: 1%;
+    border-radius: 10px;
+    width: 70%;
+    height: 100px;
+    resize: none;
+}
+
+#test_cases {
+    text-align: center;
+    padding: 1%;
+    color:transparent;
+    border-radius: 10px;
+    background-color: white;
+}

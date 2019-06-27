@@ -23,7 +23,10 @@ class List extends Component {
         let title;
 
         for (let i = 0; i < this.state.problems.length; i++) {
-            if (this.state.problems[i]._id === problem_id) {
+            if (
+                this.state.problems[i] &&
+                this.state.problems[i]._id === problem_id
+            ) {
                 title = this.state.problems[i].title;
                 break;
             }
@@ -60,16 +63,14 @@ class List extends Component {
                 .then(data => {
                     if (data) {
                         console.log(data);
-                        this.setState({ submit: false });
+                        this.setState({ submit: false }, () =>
+                            this.getSubmissions()
+                        );
                     }
                 })
                 .catch(err => console.log(err));
         }
     };
-
-    componentDidUpdate() {
-        this.getSubmissions();
-    }
 
     componentDidMount() {
         const id = this.props.match.params.id;
@@ -123,6 +124,8 @@ class List extends Component {
     }
 
     getSubmissions = () => {
+        console.log("AAA");
+
         return fetch(
             `/api/submissions/${getUsername()}&${this.state.list._id}`,
             {
@@ -148,7 +151,9 @@ class List extends Component {
                 return (
                     <Submission
                         title={this.state.selected.title}
-                        handleSubmission={this.handleSubmission}
+                        handleSubmission={(event, username, code) => {
+                            this.handleSubmission(event, username, code);
+                        }}
                     />
                 );
             } else {
@@ -157,6 +162,10 @@ class List extends Component {
                         <div className="problemsBox">
                             <label>Problems</label>
                             {this.state.problems.map(problem => {
+                                if (!problem) {
+                                    return null;
+                                }
+
                                 const { title, description, _id } = problem;
                                 return (
                                     <div key={_id} className="problem">

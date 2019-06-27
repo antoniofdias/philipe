@@ -22,47 +22,71 @@ class ProblemList extends Component {
 
     componentDidMount() {
         const id = this.props.match.params.id;
-        fetch(`/api/problemlist/find/${id}`, {
-            method: "get",
-            headers: {
-                "Content-Type": "application/json"
-            }
-        })
-            .then(response => response.json())
-            .then(data => {
-                const {
-                    title,
-                    description,
-                    problems,
-                    language
-                } = data.problemlist;
 
-                this.setState(
-                    {
-                        title: title,
-                        description: description,
-                        selectedProblems: [...problems],
-                        language: language
-                    },
-                    () => {
-                        fetch(`/api/problem/${this.state.language}`, {
-                            method: "get",
-                            headers: {
-                                "Content-Type": "application/json"
-                            }
-                        })
-                            .then(response => response.json())
-                            .then(data => {
-                                if (data) {
-                                    this.setState({
-                                        problems: data.problems
-                                    });
+        if (id) {
+            fetch(`/api/problemlist/find/${id}`, {
+                method: "get",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    const {
+                        title,
+                        description,
+                        problems,
+                        language
+                    } = data.problemlist;
+
+                    this.setState(
+                        {
+                            _id: id,
+                            title: title,
+                            description: description,
+                            selectedProblems: [...problems],
+                            language: language
+                        },
+                        () => {
+                            fetch(`/api/problem/${this.state.language}`, {
+                                method: "get",
+                                headers: {
+                                    "Content-Type": "application/json"
                                 }
                             })
-                            .catch(err => console.log(err));
+                                .then(response => response.json())
+                                .then(data => {
+                                    console.log(data);
+
+                                    if (data) {
+                                        this.setState({
+                                            problems: data.problems
+                                        });
+                                    }
+                                })
+                                .catch(err => console.log(err));
+                        }
+                    );
+                });
+        } else {
+            fetch(`/api/problem/${this.state.language}`, {
+                method: "get",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+
+                    if (data) {
+                        this.setState({
+                            problems: data.problems
+                        });
                     }
-                );
-            });
+                })
+                .catch(err => console.log(err));
+        }
     }
 
     handleResponse = data => {
@@ -94,11 +118,18 @@ class ProblemList extends Component {
     handleSubmit = event => {
         event.preventDefault();
 
-        const { title, description, language, selectedProblems } = this.state;
+        const {
+            _id,
+            title,
+            description,
+            language,
+            selectedProblems
+        } = this.state;
 
         fetch(`/api/problemlist`, {
             method: "post",
             body: JSON.stringify({
+                _id,
                 title,
                 description,
                 language,
@@ -178,8 +209,8 @@ class ProblemList extends Component {
                     autoFocus={true}
                     onChange={this.handleAttributesChange}
                 />
-                <InputField
-                    type="textarea"
+                <textarea
+                    id="description"
                     name="description"
                     placeholder="Description"
                     value={this.state.description}

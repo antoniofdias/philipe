@@ -1,0 +1,9 @@
+#code {
+    overflow-y: scroll;
+    margin: 1% 0%;
+    padding: 1%;
+    border-radius: 10px;
+    width: 70%;
+    height: 100px;
+    resize: none;
+}

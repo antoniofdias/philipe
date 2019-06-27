@@ -35,6 +35,24 @@ class Problems extends Component {
         this.props.history.push(`problem/${id}`);
     };
 
+    handleRemove = (event, id) => {
+        event.preventDefault();
+
+        fetch(`/api/problem`, {
+            method: "delete",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                _id: id
+            })
+        })
+            .then(response => {
+                this.requestProblems();
+            })
+            .catch(err => console.log(err));
+    };
+
     render() {
         let key = 1;
 
@@ -71,9 +89,12 @@ class Problems extends Component {
                                     >
                                         E
                                     </button>
-                                    {/* <button className="sidebutton sidebutton-remove">
-                                        X
-                                    </button> */}
+                                    <button
+                                        className="sidebutton sidebutton-remove"
+                                        onClick={e => this.handleRemove(e, _id)}
+                                    >
+                                        R
+                                    </button>
                                 </div>
                                 <span>{key++}</span>
                                 <span>{title}</span>

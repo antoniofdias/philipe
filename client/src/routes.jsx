@@ -18,7 +18,7 @@ class Routes extends Component {
                     <Header />
                     <Switch>
                         <Route path="/login" component={Login} />
-                        <Route
+                        <PrivateRoute
                             userTypes={["ADMIN"]}
                             path="/register"
                             component={Register}
@@ -37,7 +37,6 @@ class Routes extends Component {
                             redirect="/login"
                         />
                         <PrivateRoute
-                            userTypes={["ADMIN", "PROFESSOR"]}
                             path="/problemlists"
                             component={ProblemLists}
                             redirect="/login"
@@ -54,11 +53,7 @@ class Routes extends Component {
                             component={Problems}
                             redirect="/login"
                         />
-                        <PrivateRoute
-                            path="/account"
-                            component={Header}
-                            redirect="/login"
-                        />
+                        <Route path="*" component={Login} />
                     </Switch>
                 </BrowserRouter>
             </React.Fragment>

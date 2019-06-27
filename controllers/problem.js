@@ -9,7 +9,7 @@ router.get("/api/problem/find/:id", (req, res) => {
     };
 
     const id = req.params.id;
-    
+
     if (id) {
         Problem.findById(id, (err, obj) => {
             if (err) {
@@ -48,13 +48,25 @@ router.get("/api/problem/:language?", (req, res) => {
     });
 });
 
+router.delete("/api/problem", (req, res) => {
+    const { _id } = req.body;
+
+    Problem.findByIdAndRemove(_id, (err, data) => {
+        if (err) {
+            console.log(`Error while deleting ${err}`);
+        }
+    });
+
+    res.json({});
+});
+
 router.post("/api/problem", (req, res) => {
     const feedback = {
         error: null,
         message: null
     };
 
-    let { title, description, language } = req.body;
+    let { _id, title, description, language } = req.body;
 
     if (!title) {
         feedback.error = "missing-inputs";
@@ -67,7 +79,15 @@ router.post("/api/problem", (req, res) => {
         language = "PROLOG";
     }
 
-    Problem.findOne({ title: title, language: language }, (err, obj) => {
+    let condition;
+
+    if (_id) {
+        condition = { $or: [{ _id }, { title: title, language: language }] };
+    } else {
+        condition = { title: title, language: language };
+    }
+
+    Problem.findOne(condition, (err, obj) => {
         if (err) {
             feedback.error = "database-error";
             feedback.message = err;

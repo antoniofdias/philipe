@@ -60,6 +60,7 @@ class Login extends Component {
                     });
 
                     this.props.history.push("/");
+                    window.location.reload();
                 }
             })
             .catch(err => console.log(err));
@@ -73,7 +74,7 @@ class Login extends Component {
 
     render() {
         if (isAuthenticated()) {
-            return <Redirect to="/" />;
+            return <Redirect to="/problemlists" />;
         }
 
         return (
